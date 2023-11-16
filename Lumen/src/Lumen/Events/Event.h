@@ -1,5 +1,6 @@
 #pragma once
 
+#include "lmpch.h"
 #include "Lumen/Core.h"
 
 

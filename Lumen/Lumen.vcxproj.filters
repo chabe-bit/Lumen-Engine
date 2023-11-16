@@ -35,6 +35,8 @@
       <Filter>Lumen</Filter>
     </ClInclude>
     <ClInclude Include="src\lmpch.h" />
+    <ClInclude Include="src\Lumen\Window.h" />
+    <ClInclude Include="src\Platforms\Windows\WindowsWindows.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Lumen\Application.cpp">
@@ -44,5 +46,6 @@
       <Filter>Lumen</Filter>
     </ClCompile>
     <ClCompile Include="src\lmpch.cpp" />
+    <ClCompile Include="src\Platforms\Windows\WindowsWindows.cpp" />
   </ItemGroup>
 </Project>

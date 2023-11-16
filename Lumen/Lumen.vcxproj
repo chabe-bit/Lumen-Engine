@@ -59,6 +59,8 @@
     <IntDir>..\bin-int\Debug-windows-x86_64\Lumen\</IntDir>
     <TargetName>Lumen</TargetName>
     <TargetExt>.dll</TargetExt>
+    <IncludePath>C:\Users\amyke\Desktop\glfw-3.3.8.bin.WIN64\include;$(IncludePath);$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+    <LibraryPath>C:\Users\amyke\Desktop\glfw-3.3.8.bin.WIN64\lib-vc2022;$(LibaryPath);$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -90,8 +92,10 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;glfw3_mt.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ImportLibrary>..\bin\Debug-windows-x86_64\Lumen\Lumen.lib</ImportLibrary>
+      <AdditionalLibraryDirectories>
+      </AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
       <Command>IF EXIST ..\bin\Debug-windows-x86_64\Lumen\Lumen.dll\ (xcopy /Q /E /Y /I ..\bin\Debug-windows-x86_64\Lumen\Lumen.dll ..\bin\Debug-windows-x86_64\Sandbox &gt; nul) ELSE (xcopy /Q /Y /I ..\bin\Debug-windows-x86_64\Lumen\Lumen.dll ..\bin\Debug-windows-x86_64\Sandbox &gt; nul)</Command>
@@ -152,6 +156,7 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\Platforms\Windows\WindowsWindows.h" />
     <ClInclude Include="src\Lumen.h" />
     <ClInclude Include="src\Lumen\Application.h" />
     <ClInclude Include="src\Lumen\Core.h" />
@@ -162,8 +167,10 @@
     <ClInclude Include="src\Lumen\Events\MouseEvent.h" />
     <ClInclude Include="src\Lumen\Log.h" />
     <ClInclude Include="src\lmpch.h" />
+    <ClInclude Include="src\Lumen\Window.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Platforms\Windows\WindowsWindows.cpp" />
     <ClCompile Include="src\Lumen\Application.cpp" />
     <ClCompile Include="src\Lumen\Log.cpp" />
     <ClCompile Include="src\lmpch.cpp">
