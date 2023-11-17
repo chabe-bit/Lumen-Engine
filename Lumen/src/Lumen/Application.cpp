@@ -5,6 +5,7 @@
 
 #include <glad/glad.h>
 
+#include "Input.h"
 
 namespace Lumen {
 
@@ -63,6 +64,9 @@ namespace Lumen {
 
 			for (Layer* layer : m_LayerStack)
 				layer->OnUpdate();
+
+			auto [x, y] = Input::GetMousePosition();
+			LM_CORE_TRACE("{0}, {1}", x, y);
 
 			m_Window->OnUpdate();
 		}

@@ -66,6 +66,8 @@
     </ClInclude>
     <ClInclude Include="src\WindowsWindows.h" />
     <ClInclude Include="src\lmpch.h" />
+    <ClInclude Include="src\Lumen\Input.h" />
+    <ClInclude Include="src\Platforms\Windows\WindowsInput.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Lumen\Application.cpp">
@@ -90,5 +92,6 @@
       <Filter>Platforms\Windows</Filter>
     </ClCompile>
     <ClCompile Include="src\lmpch.cpp" />
+    <ClCompile Include="src\Platforms\Windows\WindowsInput.cpp" />
   </ItemGroup>
 </Project>
