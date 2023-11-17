@@ -36,7 +36,7 @@ namespace Lumen
 		m_Data.Width = props.Width;
 		m_Data.Height = props.Height;
 
-		LM_CORE_INFO("Createing window {0} {1} {2})", props.Title, props.Width, props.Height);
+		LM_CORE_INFO("Creating window {0} {1} {2})", props.Title, props.Width, props.Height);
 		
 		if (!s_GLFWInitialized)
 		{
@@ -72,6 +72,14 @@ namespace Lumen
 			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
 			WindowCloseEvent event;
 			data.EventCallback(event);
+		});
+
+		glfwSetCharCallback(m_Window, [](GLFWwindow* window, unsigned int keycode)
+		{
+			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
+			KeyTypedEvent event(keycode);
+			data.EventCallback(event);
+
 		});
 
 		glfwSetKeyCallback(m_Window, [](GLFWwindow* window, int key, int scancode, int action, int mods)
