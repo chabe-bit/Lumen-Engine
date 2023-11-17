@@ -14,9 +14,12 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 IncludeDir = {}
 IncludeDir["GLFW"] = "Lumen/vendor/GLFW/include"
 IncludeDir["Glad"] = "Lumen/vendor/Glad/include"
+IncludeDir["ImGui"] = "Lumen/vendor/ImGui"
+
 
 include "Lumen/vendor/GLFW"
 include "Lumen/vendor/Glad"
+include "Lumen/vendor/ImGui"
 
 
 project "Lumen"
@@ -41,8 +44,9 @@ project "Lumen"
         "%{prj.name}/src",
         "%{prj.name}/vendor/spdlog/include",
         "%{IncludeDir.GLFW}",
-        "%{IncludeDir.Glad}"
-        
+        "%{IncludeDir.Glad}",
+        "%{IncludeDir.ImGui}"
+
     }
 
     externalincludedirs
@@ -61,6 +65,7 @@ project "Lumen"
     {
         "GLFW",
         "Glad",
+        "ImGui",
         "opengl32.lib",
         "glfw3dll.lib",
         "glfw3.lib"

@@ -28,6 +28,7 @@ public:
 	Sandbox()
 	{
 		PushLayer(new ExampleLayer());
+		PushOverlay(new Lumen::ImGuiLayer());
 	}
 
 	~Sandbox()
