@@ -68,6 +68,8 @@
     <ClInclude Include="src\lmpch.h" />
     <ClInclude Include="src\Lumen\Input.h" />
     <ClInclude Include="src\Platforms\Windows\WindowsInput.h" />
+    <ClInclude Include="src\Lumen\KeyCodes.h" />
+    <ClInclude Include="src\Lumen\MouseButtonCodes.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Lumen\Application.cpp">

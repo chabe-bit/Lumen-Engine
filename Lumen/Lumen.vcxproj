@@ -169,9 +169,11 @@
     <ClInclude Include="src\Lumen\Events\KeyEvent.h" />
     <ClInclude Include="src\Lumen\Events\MouseEvent.h" />
     <ClInclude Include="src\Lumen\Input.h" />
+    <ClInclude Include="src\Lumen\KeyCodes.h" />
     <ClInclude Include="src\Lumen\Layer.h" />
     <ClInclude Include="src\Lumen\LayerStack.h" />
     <ClInclude Include="src\Lumen\Log.h" />
+    <ClInclude Include="src\Lumen\MouseButtonCodes.h" />
     <ClInclude Include="src\Lumen\Window.h" />
     <ClInclude Include="src\Lumen\imgui\ImGuiLayer.h" />
     <ClInclude Include="src\Platforms\OpenGL\ImGuiOpenGLRenderer.h" />

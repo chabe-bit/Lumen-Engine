@@ -12,11 +12,22 @@ public:
 	void OnUpdate() override
 	{
 		LM_CLIENT_INFO("ExampleLayer::Update");
+
+		if (Lumen::Input::IsKeyPressed(LM_KEY_TAB))
+			LM_CLIENT_INFO("Tab key is pressed! (poll)");
 	}
 
 	void OnEvent(Lumen::Event& event) override
 	{
-		LM_CLIENT_TRACE("{0}", event);
+
+		if (event.GetEventType() == Lumen::EventType::KeyPressed)
+		{
+			Lumen::KeyPressedEvent& e = (Lumen::KeyPressedEvent&)event;
+			if (e.GetKeyCode() == LM_KEY_TAB)
+				LM_CLIENT_TRACE("Tab key is pressed! (event)");
+			LM_CLIENT_TRACE("{0}", (char)e.GetKeyCode());
+		}
+
 	}
 
 
