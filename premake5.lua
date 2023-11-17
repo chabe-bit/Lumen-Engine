@@ -13,8 +13,10 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 IncludeDir = {}
 IncludeDir["GLFW"] = "Lumen/vendor/GLFW/include"
+IncludeDir["Glad"] = "Lumen/vendor/Glad/include"
 
 include "Lumen/vendor/GLFW"
+include "Lumen/vendor/Glad"
 
 
 project "Lumen"
@@ -38,13 +40,31 @@ project "Lumen"
     {
         "%{prj.name}/src",
         "%{prj.name}/vendor/spdlog/include",
-        "%{IncludeDir.GLFW}"
+        "%{IncludeDir.GLFW}",
+        "%{IncludeDir.Glad}"
+        
+    }
+
+    externalincludedirs
+    {
+        "C:/Users/amyke/Desktop/glfw-3.3.8.bin.WIN64/include",
+    }
+
+    syslibdirs 
+    { 
+        "C:/Users/amyke/Desktop/glfw-3.3.8.bin.WIN64/lib-vc2022",
+        
+
     }
 
     links
     {
         "GLFW",
-        "opengl32.lib"
+        "Glad",
+        "opengl32.lib",
+        "glfw3dll.lib",
+        "glfw3.lib"
+        
     }
 
     filter "system:windows"
@@ -55,7 +75,7 @@ project "Lumen"
         defines
         {
             "LM_PLATFORM_WINDOWS",
-            "LM_BUILD_DLL",
+            "LM_BUILD_DLL"
         }
 
         postbuildcommands
@@ -65,14 +85,18 @@ project "Lumen"
 
     filter "configurations:Debug"
         defines "LM_DEBUG"
+        staticruntime "off"
+        runtime "Debug"
         symbols "On"
 
     filter "configurations:Release"
         defines "LM_RELEASE"
+        buildoptions "/MD"
         optimize "On"
 
     filter "configurations:Dist"
         defines "LM_DIST"
+        buildoptions "/MD"
         optimize "On"
 
 project "Sandbox"
@@ -112,6 +136,8 @@ project "Sandbox"
 
     filter "configurations:Debug"
         defines "LM_DEBUG"
+        staticruntime "off"
+        runtime "Debug"
         symbols "On"
 
     filter "configurations:Release"

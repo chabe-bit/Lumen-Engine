@@ -59,8 +59,8 @@
     <IntDir>..\bin-int\Debug-windows-x86_64\Lumen\</IntDir>
     <TargetName>Lumen</TargetName>
     <TargetExt>.dll</TargetExt>
-    <IncludePath>C:\Users\amyke\Desktop\glfw-3.3.8.bin.WIN64\include;$(IncludePath);$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
-    <LibraryPath>C:\Users\amyke\Desktop\glfw-3.3.8.bin.WIN64\lib-vc2022;$(LibaryPath);$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64)</LibraryPath>
+    <ExternalIncludePath>C:\Users\amyke\Desktop\glfw-3.3.8.bin.WIN64\include;$(ExternalIncludePath)</ExternalIncludePath>
+    <LibraryPath>C:\Users\amyke\Desktop\glfw-3.3.8.bin.WIN64\lib-vc2022;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -68,6 +68,8 @@
     <IntDir>..\bin-int\Release-windows-x86_64\Lumen\</IntDir>
     <TargetName>Lumen</TargetName>
     <TargetExt>.dll</TargetExt>
+    <ExternalIncludePath>C:\Users\amyke\Desktop\glfw-3.3.8.bin.WIN64\include;$(ExternalIncludePath)</ExternalIncludePath>
+    <LibraryPath>C:\Users\amyke\Desktop\glfw-3.3.8.bin.WIN64\lib-vc2022;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -75,6 +77,8 @@
     <IntDir>..\bin-int\Dist-windows-x86_64\Lumen\</IntDir>
     <TargetName>Lumen</TargetName>
     <TargetExt>.dll</TargetExt>
+    <ExternalIncludePath>C:\Users\amyke\Desktop\glfw-3.3.8.bin.WIN64\include;$(ExternalIncludePath)</ExternalIncludePath>
+    <LibraryPath>C:\Users\amyke\Desktop\glfw-3.3.8.bin.WIN64\lib-vc2022;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -82,20 +86,18 @@
       <PrecompiledHeaderFile>lmpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>LM_PLATFORM_WINDOWS;LM_BUILD_DLL;LM_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\Glad\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
-      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <ExternalWarningLevel>Level3</ExternalWarningLevel>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>opengl32.lib;glfw3_mt.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;glfw3dll.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ImportLibrary>..\bin\Debug-windows-x86_64\Lumen\Lumen.lib</ImportLibrary>
-      <AdditionalLibraryDirectories>
-      </AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
       <Command>IF EXIST ..\bin\Debug-windows-x86_64\Lumen\Lumen.dll\ (xcopy /Q /E /Y /I ..\bin\Debug-windows-x86_64\Lumen\Lumen.dll ..\bin\Debug-windows-x86_64\Sandbox &gt; nul) ELSE (xcopy /Q /Y /I ..\bin\Debug-windows-x86_64\Lumen\Lumen.dll ..\bin\Debug-windows-x86_64\Sandbox &gt; nul)</Command>
@@ -107,13 +109,14 @@
       <PrecompiledHeaderFile>lmpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>LM_PLATFORM_WINDOWS;LM_BUILD_DLL;LM_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\Glad\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <MinimalRebuild>false</MinimalRebuild>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <AdditionalOptions>/MD %(AdditionalOptions)</AdditionalOptions>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <ExternalWarningLevel>Level3</ExternalWarningLevel>
     </ClCompile>
@@ -121,7 +124,7 @@
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;glfw3dll.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ImportLibrary>..\bin\Release-windows-x86_64\Lumen\Lumen.lib</ImportLibrary>
     </Link>
     <PostBuildEvent>
@@ -134,13 +137,14 @@
       <PrecompiledHeaderFile>lmpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>LM_PLATFORM_WINDOWS;LM_BUILD_DLL;LM_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\Glad\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <MinimalRebuild>false</MinimalRebuild>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <AdditionalOptions>/MD %(AdditionalOptions)</AdditionalOptions>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <ExternalWarningLevel>Level3</ExternalWarningLevel>
     </ClCompile>
@@ -148,7 +152,7 @@
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;glfw3dll.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ImportLibrary>..\bin\Dist-windows-x86_64\Lumen\Lumen.lib</ImportLibrary>
     </Link>
     <PostBuildEvent>
@@ -156,7 +160,6 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="src\Platforms\Windows\WindowsWindows.h" />
     <ClInclude Include="src\Lumen.h" />
     <ClInclude Include="src\Lumen\Application.h" />
     <ClInclude Include="src\Lumen\Core.h" />
@@ -165,14 +168,19 @@
     <ClInclude Include="src\Lumen\Events\Event.h" />
     <ClInclude Include="src\Lumen\Events\KeyEvent.h" />
     <ClInclude Include="src\Lumen\Events\MouseEvent.h" />
+    <ClInclude Include="src\Lumen\Layer.h" />
+    <ClInclude Include="src\Lumen\LayerStack.h" />
     <ClInclude Include="src\Lumen\Log.h" />
-    <ClInclude Include="src\lmpch.h" />
     <ClInclude Include="src\Lumen\Window.h" />
+    <ClInclude Include="src\WindowsWindows.h" />
+    <ClInclude Include="src\lmpch.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Platforms\Windows\WindowsWindows.cpp" />
     <ClCompile Include="src\Lumen\Application.cpp" />
+    <ClCompile Include="src\Lumen\Layer.cpp" />
+    <ClCompile Include="src\Lumen\LayerStack.cpp" />
     <ClCompile Include="src\Lumen\Log.cpp" />
+    <ClCompile Include="src\Platforms\Windows\WindowsWindows.cpp" />
     <ClCompile Include="src\lmpch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
@@ -180,6 +188,9 @@
   <ItemGroup>
     <ProjectReference Include="vendor\GLFW\GLFW.vcxproj">
       <Project>{154B857C-0182-860D-AA6E-6C109684020F}</Project>
+    </ProjectReference>
+    <ProjectReference Include="vendor\Glad\Glad.vcxproj">
+      <Project>{BDD6857C-A90D-870D-52FA-6C103E10030F}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -7,6 +7,12 @@
     <Filter Include="Lumen\Events">
       <UniqueIdentifier>{0AD998D1-F63B-2876-9FC1-602C8B03F4F8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Platforms">
+      <UniqueIdentifier>{DDACA145-4917-56BC-9255-0762FEFE3311}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Platforms\Windows">
+      <UniqueIdentifier>{17E40808-83FA-069E-CC71-92BF38C7D725}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Lumen.h" />
@@ -31,21 +37,37 @@
     <ClInclude Include="src\Lumen\Events\MouseEvent.h">
       <Filter>Lumen\Events</Filter>
     </ClInclude>
+    <ClInclude Include="src\Lumen\Layer.h">
+      <Filter>Lumen</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Lumen\LayerStack.h">
+      <Filter>Lumen</Filter>
+    </ClInclude>
     <ClInclude Include="src\Lumen\Log.h">
       <Filter>Lumen</Filter>
     </ClInclude>
+    <ClInclude Include="src\Lumen\Window.h">
+      <Filter>Lumen</Filter>
+    </ClInclude>
+    <ClInclude Include="src\WindowsWindows.h" />
     <ClInclude Include="src\lmpch.h" />
-    <ClInclude Include="src\Lumen\Window.h" />
-    <ClInclude Include="src\Platforms\Windows\WindowsWindows.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Lumen\Application.cpp">
       <Filter>Lumen</Filter>
     </ClCompile>
+    <ClCompile Include="src\Lumen\Layer.cpp">
+      <Filter>Lumen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Lumen\LayerStack.cpp">
+      <Filter>Lumen</Filter>
+    </ClCompile>
     <ClCompile Include="src\Lumen\Log.cpp">
       <Filter>Lumen</Filter>
     </ClCompile>
+    <ClCompile Include="src\Platforms\Windows\WindowsWindows.cpp">
+      <Filter>Platforms\Windows</Filter>
+    </ClCompile>
     <ClCompile Include="src\lmpch.cpp" />
-    <ClCompile Include="src\Platforms\Windows\WindowsWindows.cpp" />
   </ItemGroup>
 </Project>
