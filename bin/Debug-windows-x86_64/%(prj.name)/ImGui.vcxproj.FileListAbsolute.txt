@@ -1,0 +1,1 @@
+C:\dev\LumenV2\Lumen-Engine\Lumen\vendor\ImGui\imgui\bin\Debug-windows-x86_64\%(prj.name)\ImGui.lib
