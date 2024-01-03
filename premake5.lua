@@ -14,18 +14,21 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 IncludeDir = {}
 IncludeDir["GLFW"] = "Lumen/vendor/GLFW/include"
 IncludeDir["Glad"] = "Lumen/vendor/Glad/include"
-IncludeDir["ImGui"] = "Lumen/vendor/ImGui"
+IncludeDir["ImGui"] = "Lumen/vendor/ImGui/imgui"
+IncludeDir["glm"] = "Lumen/vendor/glm"
 
 
 include "Lumen/vendor/GLFW"
 include "Lumen/vendor/Glad"
-include "Lumen/vendor/ImGui"
+include "Lumen/vendor/ImGui/imgui"
 
 
 project "Lumen"
     location "Lumen"
-    kind "SharedLib"
+    kind "StaticLib"
     language "C++"
+    cppdialect "C++17"
+    staticruntime "on"
 
     targetdir ("bin/" .. outputdir .. "/%{prj.name}")
     objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -37,6 +40,8 @@ project "Lumen"
     {
         "%{prj.name}/src/**.h",
         "%{prj.name}/src/**.cpp",
+        "%{prj.name}/vendor/glm/glm/**.hpp",
+        "%{prj.name}/vendor/glm/glm/**.inl"
     }
 
     includedirs
@@ -45,7 +50,8 @@ project "Lumen"
         "%{prj.name}/vendor/spdlog/include",
         "%{IncludeDir.GLFW}",
         "%{IncludeDir.Glad}",
-        "%{IncludeDir.ImGui}"
+        "%{IncludeDir.ImGui}",
+        "%{IncludeDir.glm}"
 
     }
 
@@ -73,41 +79,36 @@ project "Lumen"
     }
 
     filter "system:windows"
-        cppdialect "C++17"
-        staticruntime "On"
         systemversion "latest"
 
         defines
         {
             "LM_PLATFORM_WINDOWS",
-            "LM_BUILD_DLL"
-        }
-
-        postbuildcommands
-        {
-            ("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/Sandbox")
+            "LM_BUILD_DLL",
+            "GLFW_INCLUDE_NONE"
         }
 
     filter "configurations:Debug"
         defines "LM_DEBUG"
-        staticruntime "off"
         runtime "Debug"
-        symbols "On"
+        symbols "on"
 
     filter "configurations:Release"
         defines "LM_RELEASE"
-        buildoptions "/MD"
-        optimize "On"
+        runtime "Release"
+        optimize "on"
 
     filter "configurations:Dist"
         defines "LM_DIST"
-        buildoptions "/MD"
-        optimize "On"
+        runtime "Release"
+        optimize "on"
 
 project "Sandbox"
     location "Sandbox"
     kind "ConsoleApp"
     language "C++"
+    cppdialect "C++17"
+    staticruntime "on"
 
     targetdir ("bin/" .. outputdir .. "/%{prj.name}")
     objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -121,7 +122,8 @@ project "Sandbox"
     includedirs
     {
         "Lumen/vendor/spdlog/include",
-        "Lumen/src"
+        "Lumen/src",
+        "%{IncludeDir.glm}",
     }
 
     links 
@@ -130,8 +132,6 @@ project "Sandbox"
     }
 
     filter "system:windows"
-        cppdialect "C++17"
-        staticruntime "On"
         systemversion "latest"
 
         defines
@@ -141,15 +141,16 @@ project "Sandbox"
 
     filter "configurations:Debug"
         defines "LM_DEBUG"
-        staticruntime "off"
         runtime "Debug"
-        symbols "On"
+        symbols "on"
 
     filter "configurations:Release"
         defines "LM_RELEASE"
-        optimize "On"
+        runtime "Release"
+        optimize "on"
 
     filter "configurations:Dist"
         defines "LM_DIST"
-        optimize "On"
+        runtime "Release"
+        optimize "on"
 

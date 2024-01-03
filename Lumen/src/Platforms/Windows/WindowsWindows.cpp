@@ -5,6 +5,7 @@
 #include "Lumen/Events/MouseEvent.h"
 #include "Lumen/Events/KeyEvent.h"
 
+#include "Platforms/OpenGL/OpenGLContext.h"
 
 namespace Lumen
 {
@@ -48,11 +49,10 @@ namespace Lumen
 		}
 
 		m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, m_Data.Title.c_str(), nullptr, nullptr);
-		glfwMakeContextCurrent(m_Window);
-
-		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
-		LM_CORE_ASSERT(status, "Failed to initialize Glad!");
-
+		
+		m_Context = new OpenGLContext(m_Window);
+		m_Context->Init();
+	
 		glfwSetWindowUserPointer(m_Window, &m_Data);
 		SetVSync(true);
 
@@ -158,7 +158,7 @@ namespace Lumen
 	void WindowsWindow::OnUpdate()
 	{
 		glfwPollEvents();
-		glfwSwapBuffers(m_Window);
+		m_Context->SwapBuffers();
 	}
 
 	void WindowsWindow::SetVSync(bool enabled)

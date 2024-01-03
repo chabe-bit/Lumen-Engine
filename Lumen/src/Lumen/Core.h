@@ -1,11 +1,15 @@
 #pragma once
 
 #ifdef LM_PLATFORM_WINDOWS
+#if LM_DYNAMIC_LINK
 	#ifdef LM_BUILD_DLL // Bulid this DLL
 		#define LUMEN_API __declspec(dllexport)
 	#else
 		#define LUMEN_API __declspec(dllimport)
 	#endif
+#else
+	#define LUMEN_API
+#endif
 #else
 	#error Lumen only supports Windows!
 #endif

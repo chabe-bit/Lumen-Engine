@@ -19,6 +19,9 @@
     <Filter Include="Platforms\Windows">
       <UniqueIdentifier>{17E40808-83FA-069E-CC71-92BF38C7D725}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Lumen\Renderer">
+      <UniqueIdentifier>{b1c63134-12c6-4c90-a56b-dfd81d77ea67}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Lumen.h" />
@@ -43,6 +46,12 @@
     <ClInclude Include="src\Lumen\Events\MouseEvent.h">
       <Filter>Lumen\Events</Filter>
     </ClInclude>
+    <ClInclude Include="src\Lumen\Input.h">
+      <Filter>Lumen</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Lumen\KeyCodes.h">
+      <Filter>Lumen</Filter>
+    </ClInclude>
     <ClInclude Include="src\Lumen\Layer.h">
       <Filter>Lumen</Filter>
     </ClInclude>
@@ -50,6 +59,9 @@
       <Filter>Lumen</Filter>
     </ClInclude>
     <ClInclude Include="src\Lumen\Log.h">
+      <Filter>Lumen</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Lumen\MouseButtonCodes.h">
       <Filter>Lumen</Filter>
     </ClInclude>
     <ClInclude Include="src\Lumen\Window.h">
@@ -61,15 +73,28 @@
     <ClInclude Include="src\Platforms\OpenGL\ImGuiOpenGLRenderer.h">
       <Filter>Platforms\OpenGL</Filter>
     </ClInclude>
+    <ClInclude Include="src\Platforms\OpenGL\imgui_impl_glfw.h">
+      <Filter>Platforms\OpenGL</Filter>
+    </ClInclude>
     <ClInclude Include="src\Platforms\OpenGL\imgui_impl_opengl3_loader.h">
       <Filter>Platforms\OpenGL</Filter>
     </ClInclude>
-    <ClInclude Include="src\WindowsWindows.h" />
+    <ClInclude Include="src\Platforms\Windows\WindowsInput.h">
+      <Filter>Platforms\Windows</Filter>
+    </ClInclude>
     <ClInclude Include="src\lmpch.h" />
-    <ClInclude Include="src\Lumen\Input.h" />
-    <ClInclude Include="src\Platforms\Windows\WindowsInput.h" />
-    <ClInclude Include="src\Lumen\KeyCodes.h" />
-    <ClInclude Include="src\Lumen\MouseButtonCodes.h" />
+    <ClInclude Include="src\WindowsWindows.h">
+      <Filter>Platforms\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="GraphicsContext.h">
+      <Filter>Lumen\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenGLContext.h">
+      <Filter>Platforms\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Lumen\Renderer\Shader.h">
+      <Filter>Lumen\Renderer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Lumen\Application.cpp">
@@ -90,10 +115,22 @@
     <ClCompile Include="src\Platforms\OpenGL\ImGuiOpenGLRenderer.cpp">
       <Filter>Platforms\OpenGL</Filter>
     </ClCompile>
+    <ClCompile Include="src\Platforms\OpenGL\imgui_impl_glfw.cpp">
+      <Filter>Platforms\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platforms\Windows\WindowsInput.cpp">
+      <Filter>Platforms\Windows</Filter>
+    </ClCompile>
     <ClCompile Include="src\Platforms\Windows\WindowsWindows.cpp">
       <Filter>Platforms\Windows</Filter>
     </ClCompile>
     <ClCompile Include="src\lmpch.cpp" />
-    <ClCompile Include="src\Platforms\Windows\WindowsInput.cpp" />
+    <ClCompile Include="ImGuiBuild.cpp" />
+    <ClCompile Include="OpenGLContext.cpp">
+      <Filter>Platforms\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Lumen\Renderer\Shader.cpp">
+      <Filter>Lumen\Renderer</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

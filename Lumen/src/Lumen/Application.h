@@ -7,6 +7,8 @@
 #include "Window.h"
 #include "LayerStack.h"
 
+#include "Lumen/Renderer/Shader.h"
+
 namespace Lumen {
 
 	class LUMEN_API Application
@@ -30,6 +32,10 @@ namespace Lumen {
 		std::unique_ptr<Window> m_Window; // unqiue ptr since it's unique for this class
 		bool m_Running = true;
 		LayerStack m_LayerStack;
+
+		unsigned int m_VertexArray, m_VertexBuffer, m_IndexBuffer;
+		std::unique_ptr<Shader> m_Shader;
+
 	private:
 		static Application* s_Instance;
 	};

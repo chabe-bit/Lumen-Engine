@@ -7,6 +7,7 @@
 #include "Platforms/OpenGL/ImGuiOpenGLRenderer.h"
 
 #include <GLFW/glfw3.h>
+#include <gl/GL.h>
 
 #include <sstream>
 
