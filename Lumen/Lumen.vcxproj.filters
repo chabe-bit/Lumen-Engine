@@ -104,6 +104,12 @@
     <ClInclude Include="src\Lumen\Renderer\GraphicsContext.h">
       <Filter>Lumen\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\Lumen\Renderer\VertexArray.h">
+      <Filter>Lumen\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platforms\OpenGL\OpenGLVertexArray.h">
+      <Filter>Platforms\OpenGL</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Lumen\Application.cpp">
@@ -149,6 +155,12 @@
     <ClCompile Include="src\ImGuiBuild.cpp" />
     <ClCompile Include="src\Lumen\Renderer\Renderer.cpp">
       <Filter>Lumen\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Lumen\Renderer\VertexArray.cpp">
+      <Filter>Lumen\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platforms\OpenGL\OpenGLVertexArray.cpp">
+      <Filter>Platforms\OpenGL</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
