@@ -149,8 +149,6 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="GraphicsContext.h" />
-    <ClInclude Include="OpenGLContext.h" />
     <ClInclude Include="src\Lumen.h" />
     <ClInclude Include="src\Lumen\Application.h" />
     <ClInclude Include="src\Lumen\Core.h" />
@@ -165,27 +163,35 @@
     <ClInclude Include="src\Lumen\LayerStack.h" />
     <ClInclude Include="src\Lumen\Log.h" />
     <ClInclude Include="src\Lumen\MouseButtonCodes.h" />
+    <ClInclude Include="src\Lumen\Renderer\Buffer.h" />
+    <ClInclude Include="src\Lumen\Renderer\GraphicsContext.h" />
+    <ClInclude Include="src\Lumen\Renderer\Renderer.h" />
     <ClInclude Include="src\Lumen\Renderer\Shader.h" />
     <ClInclude Include="src\Lumen\Window.h" />
     <ClInclude Include="src\Lumen\imgui\ImGuiLayer.h" />
     <ClInclude Include="src\Platforms\OpenGL\ImGuiOpenGLRenderer.h" />
     <ClInclude Include="src\Platforms\OpenGL\imgui_impl_glfw.h" />
     <ClInclude Include="src\Platforms\OpenGL\imgui_impl_opengl3_loader.h" />
+    <ClInclude Include="src\Platforms\OpenGL\OpenGLBuffer.h" />
+    <ClInclude Include="src\Platforms\OpenGL\OpenGLContext.h" />
     <ClInclude Include="src\Platforms\Windows\WindowsInput.h" />
     <ClInclude Include="src\WindowsWindows.h" />
     <ClInclude Include="src\lmpch.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ImGuiBuild.cpp" />
-    <ClCompile Include="OpenGLContext.cpp" />
+    <ClCompile Include="src\ImGuiBuild.cpp" />
     <ClCompile Include="src\Lumen\Application.cpp" />
     <ClCompile Include="src\Lumen\Layer.cpp" />
     <ClCompile Include="src\Lumen\LayerStack.cpp" />
     <ClCompile Include="src\Lumen\Log.cpp" />
     <ClCompile Include="src\Lumen\imgui\ImGuiLayer.cpp" />
+    <ClCompile Include="src\Lumen\Renderer\Buffer.cpp" />
+    <ClCompile Include="src\Lumen\Renderer\Renderer.cpp" />
     <ClCompile Include="src\Lumen\Renderer\Shader.cpp" />
     <ClCompile Include="src\Platforms\OpenGL\ImGuiOpenGLRenderer.cpp" />
     <ClCompile Include="src\Platforms\OpenGL\imgui_impl_glfw.cpp" />
+    <ClCompile Include="src\Platforms\OpenGL\OpenGLBuffer.cpp" />
+    <ClCompile Include="src\Platforms\OpenGL\OpenGLContext.cpp" />
     <ClCompile Include="src\Platforms\Windows\WindowsInput.cpp" />
     <ClCompile Include="src\Platforms\Windows\WindowsWindows.cpp" />
     <ClCompile Include="src\lmpch.cpp">

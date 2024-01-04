@@ -7,6 +7,7 @@
 #include <functional>
 
 #include <string>
+#include <stdint.h>
 #include <sstream>
 #include <vector>
 #include <unordered_map>

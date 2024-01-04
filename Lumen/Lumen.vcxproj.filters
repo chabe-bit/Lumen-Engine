@@ -86,13 +86,22 @@
     <ClInclude Include="src\WindowsWindows.h">
       <Filter>Platforms\Windows</Filter>
     </ClInclude>
-    <ClInclude Include="GraphicsContext.h">
+    <ClInclude Include="src\Lumen\Renderer\Shader.h">
       <Filter>Lumen\Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="OpenGLContext.h">
+    <ClInclude Include="src\Platforms\OpenGL\OpenGLBuffer.h">
       <Filter>Platforms\OpenGL</Filter>
     </ClInclude>
-    <ClInclude Include="src\Lumen\Renderer\Shader.h">
+    <ClInclude Include="src\Lumen\Renderer\Buffer.h">
+      <Filter>Lumen\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platforms\OpenGL\OpenGLContext.h">
+      <Filter>Platforms\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Lumen\Renderer\Renderer.h">
+      <Filter>Lumen\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Lumen\Renderer\GraphicsContext.h">
       <Filter>Lumen\Renderer</Filter>
     </ClInclude>
   </ItemGroup>
@@ -125,11 +134,20 @@
       <Filter>Platforms\Windows</Filter>
     </ClCompile>
     <ClCompile Include="src\lmpch.cpp" />
-    <ClCompile Include="ImGuiBuild.cpp" />
-    <ClCompile Include="OpenGLContext.cpp">
+    <ClCompile Include="src\Lumen\Renderer\Shader.cpp">
+      <Filter>Lumen\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Lumen\Renderer\Buffer.cpp">
+      <Filter>Lumen\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platforms\OpenGL\OpenGLBuffer.cpp">
       <Filter>Platforms\OpenGL</Filter>
     </ClCompile>
-    <ClCompile Include="src\Lumen\Renderer\Shader.cpp">
+    <ClCompile Include="src\Platforms\OpenGL\OpenGLContext.cpp">
+      <Filter>Platforms\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ImGuiBuild.cpp" />
+    <ClCompile Include="src\Lumen\Renderer\Renderer.cpp">
       <Filter>Lumen\Renderer</Filter>
     </ClCompile>
   </ItemGroup>

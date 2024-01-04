@@ -1,8 +1,9 @@
 #pragma once
+#pragma once
 
 #include "Lumen/Renderer/GraphicsContext.h"
 
-class GLFWwindow;
+struct GLFWwindow;
 
 namespace Lumen {
 
