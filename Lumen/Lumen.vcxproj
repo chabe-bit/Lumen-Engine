@@ -165,7 +165,10 @@
     <ClInclude Include="src\Lumen\MouseButtonCodes.h" />
     <ClInclude Include="src\Lumen\Renderer\Buffer.h" />
     <ClInclude Include="src\Lumen\Renderer\GraphicsContext.h" />
+    <ClInclude Include="src\Lumen\Renderer\RenderCommand.cpp" />
+    <ClInclude Include="src\Lumen\Renderer\RenderCommand.h" />
     <ClInclude Include="src\Lumen\Renderer\Renderer.h" />
+    <ClInclude Include="src\Lumen\Renderer\RendererAPI.h" />
     <ClInclude Include="src\Lumen\Renderer\Shader.h" />
     <ClInclude Include="src\Lumen\Renderer\VertexArray.h" />
     <ClInclude Include="src\Lumen\Window.h" />
@@ -175,6 +178,7 @@
     <ClInclude Include="src\Platforms\OpenGL\imgui_impl_opengl3_loader.h" />
     <ClInclude Include="src\Platforms\OpenGL\OpenGLBuffer.h" />
     <ClInclude Include="src\Platforms\OpenGL\OpenGLContext.h" />
+    <ClInclude Include="src\Platforms\OpenGL\OpenGLRendererAPI.h" />
     <ClInclude Include="src\Platforms\OpenGL\OpenGLVertexArray.h" />
     <ClInclude Include="src\Platforms\Windows\WindowsInput.h" />
     <ClInclude Include="src\WindowsWindows.h" />
@@ -189,12 +193,14 @@
     <ClCompile Include="src\Lumen\imgui\ImGuiLayer.cpp" />
     <ClCompile Include="src\Lumen\Renderer\Buffer.cpp" />
     <ClCompile Include="src\Lumen\Renderer\Renderer.cpp" />
+    <ClCompile Include="src\Lumen\Renderer\RendererAPI.cpp" />
     <ClCompile Include="src\Lumen\Renderer\Shader.cpp" />
     <ClCompile Include="src\Lumen\Renderer\VertexArray.cpp" />
     <ClCompile Include="src\Platforms\OpenGL\ImGuiOpenGLRenderer.cpp" />
     <ClCompile Include="src\Platforms\OpenGL\imgui_impl_glfw.cpp" />
     <ClCompile Include="src\Platforms\OpenGL\OpenGLBuffer.cpp" />
     <ClCompile Include="src\Platforms\OpenGL\OpenGLContext.cpp" />
+    <ClCompile Include="src\Platforms\OpenGL\OpenGLRendererAPI.cpp" />
     <ClCompile Include="src\Platforms\OpenGL\OpenGLVertexArray.cpp" />
     <ClCompile Include="src\Platforms\Windows\WindowsInput.cpp" />
     <ClCompile Include="src\Platforms\Windows\WindowsWindows.cpp" />

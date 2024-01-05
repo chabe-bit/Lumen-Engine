@@ -1,8 +1,5 @@
 #pragma once
 
-#ifndef BUFFER_H
-#define BUFFER_H
-
 namespace Lumen {
 
 	enum class ShaderDataType : uint8_t
@@ -135,5 +132,3 @@ namespace Lumen {
 		static IndexBuffer* Create(uint32_t* indices, uint32_t size);
 	};
 }
-
-#endif

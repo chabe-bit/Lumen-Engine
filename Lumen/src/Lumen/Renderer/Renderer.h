@@ -1,18 +1,24 @@
- #pragma once
+#pragma once
+
+#include "RendererAPI.h"
+#include "VertexArray.h"
 
 namespace Lumen {
-	
-	enum class RendererAPI
-	{
-		None = 0, OpenGL = 1
-	};
+    class Renderer {
+    public:
+        static void Init(); // Initialize the RendererAPI
+        static void Shutdown(); // Clean up
 
-	class Renderer
-	{
-	public:
-		inline static RendererAPI GetAPI() { return s_RendererAPI; }
-	private:
-		static RendererAPI s_RendererAPI;
+        static void SetClearColor(const glm::vec4& color);
+        static void Clear();
 
-	};
+        static void BeginScene();
+        static void EndScene();
+
+        static void Submit(const std::shared_ptr<VertexArray>& vertexArray);
+        inline static RendererAPI::API GetAPI() { return RendererAPI::GetAPI(); }
+
+    private:
+        static RendererAPI* s_RendererAPI; // RendererAPI instance
+    };
 }

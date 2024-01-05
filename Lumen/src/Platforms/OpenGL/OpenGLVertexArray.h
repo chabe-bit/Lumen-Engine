@@ -1,7 +1,5 @@
 #pragma once
 
-#ifndef OPENGL_VERTEX_H
-#define OPENGL_VERTEX_H
 
 #include "Lumen/Renderer/VertexArray.h"
 #include <vector>
@@ -32,5 +30,3 @@ namespace Lumen {
 	};
 
 }
-
-#endif

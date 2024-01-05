@@ -1,8 +1,5 @@
 #pragma once
 
-#ifndef OPENGL_BUFFER_H
-#define OPENGL_BUFFER_H
-
 #include <stdint.h>
 #include "Lumen/Renderer/Buffer.h"
 
@@ -39,5 +36,3 @@ namespace Lumen {
     };
 
 }
-
-#endif // OPENGL_BUFFER_H
