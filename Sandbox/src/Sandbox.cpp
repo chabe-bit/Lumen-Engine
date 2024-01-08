@@ -4,14 +4,14 @@ class ExampleLayer : public Lumen::Layer
 {
 public:
 	ExampleLayer() 
-		: Layer("Example"), m_Camera(-1.6f, 1.6f, -0.9f, 0.9f)
+		: Layer("Example"), m_Camera(-1.6f, 1.6f, -0.9f, 0.9f), m_CameraPosition(0.0f)
 	{
 		m_VertexArray.reset(Lumen::VertexArray::Create());
 
 		float vertices[3 * 7] = {
 			-0.5f, -0.5f, 0.0f, 1.0f, 0.0f, 1.0f, 1.0f,
 			 0.5f, -0.5f, 0.0f, 1.0f, 0.0f, 1.0f, 1.0f,
-			 0.0f,  0.5f, 0.0f, 0.8f, 0.8f, 0.2f, 1.0f,
+				 0.0f, 0.5f, 0.0f, 0.8f, 0.8f, 0.2f, 1.0f,
 		};
 		std::shared_ptr<Lumen::VertexBuffer> vertexBuffer;
 		vertexBuffer.reset(Lumen::VertexBuffer::Create(vertices, sizeof(vertices)));
@@ -85,11 +85,22 @@ public:
 
 	void OnUpdate() override
 	{
+		if (Lumen::Input::IsKeyPressed(LM_KEY_LEFT))
+			m_CameraPosition.x -= m_CameraSpeed;
+		else if (Lumen::Input::IsKeyPressed(LM_KEY_RIGHT))
+			m_CameraPosition.x += m_CameraSpeed;
+		else if (Lumen::Input::IsKeyPressed(LM_KEY_UP))
+			m_CameraPosition.y += m_CameraSpeed;
+		else if (Lumen::Input::IsKeyPressed(LM_KEY_DOWN))
+			m_CameraPosition.y -= m_CameraSpeed;
+
+		if (Lumen::Input::IsKeyPressed(LM_KEY_LEFT))
+			m_CameraPosition.x -= m_CameraSpeed;
 		Lumen::Renderer::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
 		Lumen::Renderer::Clear();
 
-		m_Camera.SetPosition({ 0.5f, 0.5f, 0.0f });
-		m_Camera.SetRotation(45.0f);
+		m_Camera.SetPosition(m_CameraPosition);
+		//m_Camera.SetRotation(45.0f);
 
 		Lumen::Renderer::BeginScene(m_Camera);
 
@@ -101,8 +112,8 @@ public:
 	void OnEvent(Lumen::Event& event) override
 	{
 
-
 	}
+
 
 private:
 	std::shared_ptr<Lumen::Shader> m_Shader;
@@ -112,8 +123,8 @@ private:
 	std::shared_ptr<Lumen::VertexArray> m_SquareVA;
 
 	Lumen::OrthographicCamera m_Camera;
-
-
+	glm::vec3 m_CameraPosition;
+	float m_CameraSpeed = 0.1f;
 };
 
 class Sandbox : public Lumen::Application
