@@ -3,8 +3,10 @@
 
 #include "Lumen/Log.h"
 
+#include <glm/gtc/matrix_transform.hpp>
+#include <GLFW/glfw3.h>
 #include "Lumen/Renderer/Renderer.h"
-
+//#include "Lumen/Renderer/OrthographicCamera.h"
 #include "Input.h"
 
 namespace Lumen {
@@ -96,39 +98,6 @@ namespace Lumen {
 		m_Shader.reset(new Shader(vertexSrc, fragmentSrc));
 
 
-		std::string blueVertexSrc = R"(
-			#version 330 core
-			
-			layout (location = 0) in vec3 a_Position;
-			layout (location = 1) in vec4 a_Color;
-
-			out vec3 v_Position;
-			out vec4 v_Color;
-
-			void main()
-			{
-				v_Position = a_Position;
-				v_Color = a_Color;
-				gl_Position = vec4(a_Position, 1);
-			}	
-		)";
-
-		std::string blueFragmentSrc = R"(
-			#version 330 core
-			
-			layout (location = 0) out vec4 a_Color;
-
-			in vec3 v_Position;
-
-			void main()
-			{
-				a_Color = vec4(0.2, 0.3, 0.8, 1.0);
-			}	
-		)";
-
-		m_BlueShader.reset(new Shader(blueVertexSrc, blueFragmentSrc));
-
-
 	}
 
 	Application::~Application()
@@ -166,15 +135,47 @@ namespace Lumen {
 	void Application::Run()
 	{
 		Renderer::Init();
+
 		while (m_Running)
 		{
 			Renderer::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
 			Renderer::Clear();
+
+			// Camera position
+			// In order to move the camera back, travel on the positive Z axis, and vice versa.
+			glm::vec3 m_CameraPosition = glm::vec3(0.0f, 0.0f, 3.0f);
+
+			// Camera Direction
+			// Point the camera towards the scene's origin, (0, 0, 0);
+			glm::vec3 m_CameraTarget = glm::vec3(0.0f, 0.0f, 0.0f); // Look at the scene's origin
+
+			// Subtracting the scene we want to look at from the camera position, we can find the direction
+			glm::vec3 m_CameraDirection = glm::normalize(m_CameraPosition - m_CameraTarget); // Actually points in the reverse direction of what it's looking at, so we'll have to inverse it
+
+			// Create the right axis that represents the positive x-axis
+			// A little trick is to create an up vector in world space, (0.0f, 1.0f, 0.0f) and use the camera direction to perform a cross product 
+			glm::vec3 m_VectorUp = glm::vec3(0.0f, 1.0f, 0.0f);
+			glm::vec3 m_CameraRight = glm::normalize((glm::cross(m_VectorUp, m_CameraDirection)));
+
+			// m_Camera = X, m_CameraDirection = Z, time to find Y
+			// Perform the cross product of X and Y
+			glm::vec3 m_CameraUp = glm::cross(m_CameraUp, m_CameraDirection);
+
+			const float radius = 0.0f;
+			float m_CameraX = sin(glfwGetTime() * radius);
+			float m_CameraZ = cos(glfwGetTime() * radius);
+			glm::mat4 view = glm::lookAt(glm::vec3(m_CameraX, 0.0, m_CameraZ), glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 1.0, 0.0));
+
+
+			glm::mat4 m_ProjectionMatrix;
+			glm::mat4 m_ViewMatrix;
+			glm::mat4 m_ViewProjectionMatrix; // Uses 64 bytes more, but can be used to cache M*V*P instead of calculating every time
+
+
+			glm::vec3 m_Position;
+			float m_Rotation = 0.0f; // Keep track of rotations
 	 
 			Renderer::BeginScene();
-
-			m_BlueShader->Bind();
-			Renderer::Submit(m_SquareVA);
 
 			m_Shader->Bind();
 			Renderer::Submit(m_VertexArray);

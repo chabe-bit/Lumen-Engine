@@ -165,8 +165,7 @@
     <ClInclude Include="src\Lumen\MouseButtonCodes.h" />
     <ClInclude Include="src\Lumen\Renderer\Buffer.h" />
     <ClInclude Include="src\Lumen\Renderer\GraphicsContext.h" />
-    <ClInclude Include="src\Lumen\Renderer\RenderCommand.cpp" />
-    <ClInclude Include="src\Lumen\Renderer\RenderCommand.h" />
+    <ClInclude Include="src\Lumen\Renderer\OrthographicCamera.h" />
     <ClInclude Include="src\Lumen\Renderer\Renderer.h" />
     <ClInclude Include="src\Lumen\Renderer\RendererAPI.h" />
     <ClInclude Include="src\Lumen\Renderer\Shader.h" />
@@ -192,6 +191,7 @@
     <ClCompile Include="src\Lumen\Log.cpp" />
     <ClCompile Include="src\Lumen\imgui\ImGuiLayer.cpp" />
     <ClCompile Include="src\Lumen\Renderer\Buffer.cpp" />
+    <ClCompile Include="src\Lumen\Renderer\OrthographicCamera.cpp" />
     <ClCompile Include="src\Lumen\Renderer\Renderer.cpp" />
     <ClCompile Include="src\Lumen\Renderer\RendererAPI.cpp" />
     <ClCompile Include="src\Lumen\Renderer\Shader.cpp" />

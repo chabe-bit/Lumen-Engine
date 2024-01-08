@@ -1,5 +1,6 @@
 #pragma once
 
+#include <glm/glm.hpp>
 #include "RendererAPI.h"
 #include "VertexArray.h"
 
@@ -11,6 +12,8 @@ namespace Lumen {
 
         static void SetClearColor(const glm::vec4& color);
         static void Clear();
+
+        static void CameraView();
 
         static void BeginScene();
         static void EndScene();
