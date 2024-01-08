@@ -2,7 +2,8 @@
 
 #include <glm/glm.hpp>
 #include "RendererAPI.h"
-#include "VertexArray.h"
+#include "Shader.h"
+#include "Lumen/Renderer/OrthographicCamera.h"
 
 namespace Lumen {
     class Renderer {
@@ -13,15 +14,22 @@ namespace Lumen {
         static void SetClearColor(const glm::vec4& color);
         static void Clear();
 
-        static void CameraView();
-
-        static void BeginScene();
+        static void BeginScene(OrthographicCamera& camera);
         static void EndScene();
 
-        static void Submit(const std::shared_ptr<VertexArray>& vertexArray);
-        inline static RendererAPI::API GetAPI() { return RendererAPI::GetAPI(); }
+        static void Submit(const std::shared_ptr<Shader>& shader, const std::shared_ptr<VertexArray>& vertexArray);
+        inline static RendererAPI::API GetAPI() { return RendererAPI::GetAPI(); } 
 
     private:
         static RendererAPI* s_RendererAPI; // RendererAPI instance
+
+        struct SceneData
+        {
+            glm::mat4 ViewProjectionMatrix;
+        };
+
+        static SceneData* m_SceneData;
+
+
     };
 }

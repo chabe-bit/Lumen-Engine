@@ -4,6 +4,8 @@
 
 namespace Lumen {
 
+    Renderer::SceneData* Renderer::m_SceneData = new Renderer::SceneData;
+
     RendererAPI* Renderer::s_RendererAPI = nullptr;
 
     void Renderer::Init() {
@@ -23,15 +25,19 @@ namespace Lumen {
         s_RendererAPI->Clear();
     }
 
-    void Renderer::BeginScene() {
-        // Scene initialization code
+    void Renderer::BeginScene(OrthographicCamera& camera) {
+        m_SceneData->ViewProjectionMatrix = camera.GetViewProjectionMatrix();
     }
 
     void Renderer::EndScene() {
         // Scene finalization code
     }
 
-    void Renderer::Submit(const std::shared_ptr<VertexArray>& vertexArray) {
+    void Renderer::Submit(const std::shared_ptr<Shader>& shader, const std::shared_ptr<VertexArray>& vertexArray) {
+       
+        shader->Bind();
+        shader->UploadUniformMat4("u_ViewProjection", m_SceneData->ViewProjectionMatrix);
+        
         vertexArray->Bind();
         s_RendererAPI->DrawIndexed(vertexArray);
     }

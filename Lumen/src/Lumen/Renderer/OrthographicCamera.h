@@ -2,7 +2,6 @@
 
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/glm.hpp>
-#include <GLFW/glfw3.h>
 
 namespace Lumen {
 	
@@ -12,7 +11,7 @@ namespace Lumen {
 		OrthographicCamera(float left, float right, float bottom, float top);
 
 		const glm::vec3& GetPosition() const { return m_Position; }
-		void SetPosition(const glm::vec3& position) { m_Position = position; }
+		void SetPosition(const glm::vec3& position) { m_Position = position; RecalculateViewMatrix(); }
 
 		float GetRotation() const { return m_Rotation; }
 		void SetRotation(float rotation) { m_Rotation = rotation; RecalculateViewMatrix(); }
@@ -30,7 +29,7 @@ namespace Lumen {
 		glm::mat4 m_ViewProjectionMatrix; // Uses 64 bytes more, but can be used to cache M*V*P instead of calculating every time
 
 
-		glm::vec3 m_Position;
+		glm::vec3 m_Position = glm::vec3(0, 0, 0);
 		float m_Rotation = 0.0f; // Keep track of rotations
 
 
