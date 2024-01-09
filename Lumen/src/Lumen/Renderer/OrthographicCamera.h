@@ -19,6 +19,7 @@ namespace Lumen {
 		const glm::mat4& GetProjectionMatrix() const { return m_ProjectionMatrix; }
 		const glm::mat4& GetViewMatrix() const { return m_ViewMatrix; }
 		const glm::mat4& GetViewProjectionMatrix() const { return m_ViewProjectionMatrix; }
+		const glm::mat4& GetModelMatrix() const { return m_Model; }
 
 	private:
 		void RecalculateViewMatrix();
@@ -27,7 +28,7 @@ namespace Lumen {
 		glm::mat4 m_ProjectionMatrix;
 		glm::mat4 m_ViewMatrix;
 		glm::mat4 m_ViewProjectionMatrix; // Uses 64 bytes more, but can be used to cache M*V*P instead of calculating every time
-
+		glm::mat4 m_Model;
 
 		glm::vec3 m_Position = glm::vec3(0, 0, 0);
 		float m_Rotation = 0.0f; // Keep track of rotations

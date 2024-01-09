@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Lumen/Core.h"
+#include "Lumen/Core/Timestep.h"
 #include "Lumen/Events/Event.h"
 
 namespace Lumen
@@ -14,7 +15,7 @@ namespace Lumen
 		// When a layer is pushed on to the stack...
 		virtual void OnAttach() {} // attach the layer
 		virtual void OnDetach() {} // detach the layer
-		virtual void OnUpdate() {} // update layer
+		virtual void OnUpdate(Timestep ts) {} // update layer
 		virtual void OnEvent(Event& event) {} // event is sent to the layer
 
 		inline const std::string& GetName() const { return m_DebugName; }

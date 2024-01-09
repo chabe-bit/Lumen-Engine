@@ -119,6 +119,9 @@
     <ClInclude Include="src\Lumen\Renderer\OrthographicCamera.h">
       <Filter>Lumen\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\Lumen\Core\Timestep.h">
+      <Filter>Lumen</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Lumen\Application.cpp">

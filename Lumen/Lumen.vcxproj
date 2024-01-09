@@ -152,6 +152,7 @@
     <ClInclude Include="src\Lumen.h" />
     <ClInclude Include="src\Lumen\Application.h" />
     <ClInclude Include="src\Lumen\Core.h" />
+    <ClInclude Include="src\Lumen\Core\Timestep.h" />
     <ClInclude Include="src\Lumen\EntryPoint.h" />
     <ClInclude Include="src\Lumen\Events\ApplicationEvents.h" />
     <ClInclude Include="src\Lumen\Events\Event.h" />
