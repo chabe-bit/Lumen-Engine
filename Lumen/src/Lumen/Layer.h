@@ -18,8 +18,6 @@ namespace Lumen
 		virtual void OnUpdate(Timestep ts) {} // update layer
 		virtual void OnEvent(Event& event) {} // event is sent to the layer
 
-		virtual void OnImGuiRender() {}
-
 		inline const std::string& GetName() const { return m_DebugName; }
 	protected:
 		std::string m_DebugName;

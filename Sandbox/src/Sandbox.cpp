@@ -5,8 +5,6 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
-#include <Lumen/Renderer/Shader.h>
-#include "../ImGui/imgui/imgui.h"
 
 class ExampleLayer : public Lumen::Layer
 {
@@ -66,7 +64,7 @@ public:
 			layout (location = 0) out vec4 a_Color;
 
 			in vec3 v_Position;
-			in vec3 v_Color;
+			in vec4 v_Color;
 
 			void main()
 			{
@@ -116,13 +114,6 @@ public:
 
 
 		Lumen::Renderer::EndScene();
-	}
-
-	virtual void OnImGuiRender() override
-	{
-		ImGui::Begin("Settings");
-		ImGui::ColorEdit3("Square Color", glm::value_ptr(m_SquareColor));
-		ImGui::End();
 	}
 
 
