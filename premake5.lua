@@ -50,7 +50,7 @@ project "Lumen"
         "%{prj.name}/vendor/spdlog/include",
         "%{IncludeDir.GLFW}",
         "%{IncludeDir.Glad}",
-        "%{IncludeDir.ImGui}",
+        "%{IncludeDir.ImGui/imgui}",
         "%{IncludeDir.glm}"
 
     }

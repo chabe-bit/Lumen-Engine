@@ -1,5 +1,12 @@
 #include <Lumen.h>
+
+#include "Platforms/OpenGL/OpenGLShader.h"
+
 #include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
+
+#include <Lumen/Renderer/Shader.h>
+#include "../ImGui/imgui/imgui.h"
 
 class ExampleLayer : public Lumen::Layer
 {
@@ -59,7 +66,7 @@ public:
 			layout (location = 0) out vec4 a_Color;
 
 			in vec3 v_Position;
-			in vec4 v_Color;
+			in vec3 v_Color;
 
 			void main()
 			{
@@ -68,7 +75,7 @@ public:
 			}	
 		)";
 
-		m_Shader.reset(new Lumen::Shader(vertexSrc, fragmentSrc));
+		m_Shader.reset(Lumen::Shader::Create(vertexSrc, fragmentSrc));
 	}
 
 	void OnUpdate(Lumen::Timestep ts) override
@@ -93,6 +100,9 @@ public:
 
 		static glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
 
+		std::dynamic_pointer_cast<Lumen::OpenGLShader>(m_Shader)->Bind();
+		std::dynamic_pointer_cast<Lumen::OpenGLShader>(m_Shader)->UploadUniformFloat3("u_Color", m_SquareColor);
+
 		for (int y = 0; y < 20; y++)
 		{
 			for (int x = 0; x < 20; x++)
@@ -107,6 +117,14 @@ public:
 
 		Lumen::Renderer::EndScene();
 	}
+
+	virtual void OnImGuiRender() override
+	{
+		ImGui::Begin("Settings");
+		ImGui::ColorEdit3("Square Color", glm::value_ptr(m_SquareColor));
+		ImGui::End();
+	}
+
 
 	void OnEvent(Lumen::Event& event) override
 	{
@@ -125,7 +143,7 @@ private:
 	glm::vec3 m_CameraPosition;
 	float m_CameraSpeed = 0.1f;
 
-
+	glm::vec3 m_SquareColor = { 0.2f, 0.4f, 0.4 };
 };
 
 class Sandbox : public Lumen::Application

@@ -172,25 +172,26 @@
     <ClInclude Include="src\Lumen\Renderer\Shader.h" />
     <ClInclude Include="src\Lumen\Renderer\VertexArray.h" />
     <ClInclude Include="src\Lumen\Window.h" />
-    <ClInclude Include="src\Lumen\imgui\ImGuiLayer.h" />
+    <ClInclude Include="src\Lumen\imgui_folder\ImGuiLayer.h" />
     <ClInclude Include="src\Platforms\OpenGL\ImGuiOpenGLRenderer.h" />
     <ClInclude Include="src\Platforms\OpenGL\imgui_impl_glfw.h" />
     <ClInclude Include="src\Platforms\OpenGL\imgui_impl_opengl3_loader.h" />
     <ClInclude Include="src\Platforms\OpenGL\OpenGLBuffer.h" />
     <ClInclude Include="src\Platforms\OpenGL\OpenGLContext.h" />
     <ClInclude Include="src\Platforms\OpenGL\OpenGLRendererAPI.h" />
+    <ClInclude Include="src\Platforms\OpenGL\OpenGLShader.h" />
     <ClInclude Include="src\Platforms\OpenGL\OpenGLVertexArray.h" />
     <ClInclude Include="src\Platforms\Windows\WindowsInput.h" />
     <ClInclude Include="src\WindowsWindows.h" />
     <ClInclude Include="src\lmpch.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\ImGuiBuild.cpp" />
+    <ClCompile Include="src\Lumen\imgui_folder\ImGuiBuild.cpp" />
     <ClCompile Include="src\Lumen\Application.cpp" />
     <ClCompile Include="src\Lumen\Layer.cpp" />
     <ClCompile Include="src\Lumen\LayerStack.cpp" />
     <ClCompile Include="src\Lumen\Log.cpp" />
-    <ClCompile Include="src\Lumen\imgui\ImGuiLayer.cpp" />
+    <ClCompile Include="src\Lumen\imgui_folder\ImGuiLayer.cpp" />
     <ClCompile Include="src\Lumen\Renderer\Buffer.cpp" />
     <ClCompile Include="src\Lumen\Renderer\OrthographicCamera.cpp" />
     <ClCompile Include="src\Lumen\Renderer\Renderer.cpp" />
@@ -202,6 +203,7 @@
     <ClCompile Include="src\Platforms\OpenGL\OpenGLBuffer.cpp" />
     <ClCompile Include="src\Platforms\OpenGL\OpenGLContext.cpp" />
     <ClCompile Include="src\Platforms\OpenGL\OpenGLRendererAPI.cpp" />
+    <ClCompile Include="src\Platforms\OpenGL\OpenGLShader.cpp" />
     <ClCompile Include="src\Platforms\OpenGL\OpenGLVertexArray.cpp" />
     <ClCompile Include="src\Platforms\Windows\WindowsInput.cpp" />
     <ClCompile Include="src\Platforms\Windows\WindowsWindows.cpp" />
@@ -219,6 +221,9 @@
     <ProjectReference Include="vendor\ImGui\imgui\ImGui.vcxproj">
       <Project>{C0FF640D-2C14-8DBE-F595-301E616989EF}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="vendor\ImGui\imgui\examples\libs\emscripten\shell_minimal.html" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -67,7 +67,7 @@
     <ClInclude Include="src\Lumen\Window.h">
       <Filter>Lumen</Filter>
     </ClInclude>
-    <ClInclude Include="src\Lumen\imgui\ImGuiLayer.h">
+    <ClInclude Include="src\Lumen\imgui_folder\ImGuiLayer.h">
       <Filter>Lumen\imgui</Filter>
     </ClInclude>
     <ClInclude Include="src\Platforms\OpenGL\ImGuiOpenGLRenderer.h">
@@ -122,6 +122,7 @@
     <ClInclude Include="src\Lumen\Core\Timestep.h">
       <Filter>Lumen</Filter>
     </ClInclude>
+    <ClInclude Include="src\Platforms\OpenGL\OpenGLShader.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Lumen\Application.cpp">
@@ -136,7 +137,7 @@
     <ClCompile Include="src\Lumen\Log.cpp">
       <Filter>Lumen</Filter>
     </ClCompile>
-    <ClCompile Include="src\Lumen\imgui\ImGuiLayer.cpp">
+    <ClCompile Include="src\Lumen\imgui_folder\ImGuiLayer.cpp">
       <Filter>Lumen\imgui</Filter>
     </ClCompile>
     <ClCompile Include="src\Platforms\OpenGL\ImGuiOpenGLRenderer.cpp">
@@ -164,7 +165,7 @@
     <ClCompile Include="src\Platforms\OpenGL\OpenGLContext.cpp">
       <Filter>Platforms\OpenGL</Filter>
     </ClCompile>
-    <ClCompile Include="src\ImGuiBuild.cpp" />
+    <ClCompile Include="src\Lumen\imgui_folder\ImGuiBuild.cpp" />
     <ClCompile Include="src\Lumen\Renderer\Renderer.cpp">
       <Filter>Lumen\Renderer</Filter>
     </ClCompile>
@@ -183,5 +184,9 @@
     <ClCompile Include="src\Lumen\Renderer\OrthographicCamera.cpp">
       <Filter>Lumen\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="src\Platforms\OpenGL\OpenGLShader.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="vendor\ImGui\imgui\examples\libs\emscripten\shell_minimal.html" />
   </ItemGroup>
 </Project>
