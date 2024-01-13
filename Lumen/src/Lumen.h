@@ -18,6 +18,7 @@
 #include "Lumen/Renderer/Renderer.h"
 #include "Lumen/Renderer/Shader.h"
 #include "Lumen/Renderer/Buffer.h"
+#include "Lumen/Renderer/Texture.h"
 #include "Lumen/Renderer/OrthographicCamera.h"
 #include "Lumen/Renderer/VertexArray.h"
 // -----------------------------------

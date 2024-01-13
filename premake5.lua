@@ -14,13 +14,12 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 IncludeDir = {}
 IncludeDir["GLFW"] = "Lumen/vendor/GLFW/include"
 IncludeDir["Glad"] = "Lumen/vendor/Glad/include"
-IncludeDir["ImGui"] = "Lumen/vendor/ImGui/imgui"
 IncludeDir["glm"] = "Lumen/vendor/glm"
+IncludeDir["stb_image"] = "Lumen/vendor/stb_image"
 
 
 include "Lumen/vendor/GLFW"
 include "Lumen/vendor/Glad"
-include "Lumen/vendor/ImGui/imgui"
 
 
 project "Lumen"
@@ -40,6 +39,8 @@ project "Lumen"
     {
         "%{prj.name}/src/**.h",
         "%{prj.name}/src/**.cpp",
+        "%{prj.name}/vendor/stb_image/**.h",
+        "%{prj.name}/vendor/stb_image/**.cpp",
         "%{prj.name}/vendor/glm/glm/**.hpp",
         "%{prj.name}/vendor/glm/glm/**.inl"
     }
@@ -50,8 +51,8 @@ project "Lumen"
         "%{prj.name}/vendor/spdlog/include",
         "%{IncludeDir.GLFW}",
         "%{IncludeDir.Glad}",
-        "%{IncludeDir.ImGui/imgui}",
-        "%{IncludeDir.glm}"
+        "%{IncludeDir.glm}",
+        "%{IncludeDir.stb_image}"
 
     }
 
@@ -71,7 +72,6 @@ project "Lumen"
     {
         "GLFW",
         "Glad",
-        "ImGui",
         "opengl32.lib",
         "glfw3dll.lib",
         "glfw3.lib"

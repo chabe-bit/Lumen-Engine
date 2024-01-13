@@ -1,5 +1,7 @@
 #pragma once
 
+#include <memory>
+
 #ifdef LM_PLATFORM_WINDOWS
 #if LM_DYNAMIC_LINK
 	#ifdef LM_BUILD_DLL // Bulid this DLL
@@ -30,3 +32,16 @@
 #define BIT(x) (1 << x)
 
 #define LM_BIND_EVENT_FN(fn) std::bind(&fn, this, std::placeholders::_1)
+
+namespace Lumen {
+
+	template<typename T>
+	using Scope = std::unique_ptr<T>;
+
+	template<typename T>
+	using Ref = std::shared_ptr<T>;
+	
+	
+
+
+}

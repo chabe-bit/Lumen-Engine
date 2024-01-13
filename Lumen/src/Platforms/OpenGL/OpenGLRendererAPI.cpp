@@ -9,7 +9,7 @@ namespace Lumen {
         glClearColor(color.r, color.g, color.b, color.a);
     }
 
-    void OpenGLRendererAPI::DrawIndexed(const std::shared_ptr<VertexArray>& vertexArray) {
+    void OpenGLRendererAPI::DrawIndexed(const Ref<VertexArray>& vertexArray) {
         // Assuming your VertexArray class has a method to get the count of indices
         uint32_t indexCount = vertexArray->GetIndexBuffer()->GetCount();
         glDrawElements(GL_TRIANGLES, indexCount, GL_UNSIGNED_INT, nullptr);

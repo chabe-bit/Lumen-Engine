@@ -8,6 +8,7 @@
 #include "LayerStack.h"
 
 #include "Lumen/Core/Timestep.h"
+#include "Lumen/imgui_folder/ImGuiLayer.h"
 
 #include "Lumen/Renderer/Shader.h"
 #include "Lumen/Renderer/Buffer.h"
@@ -37,6 +38,7 @@ namespace Lumen {
 
 		std::unique_ptr<Window> m_Window; // unqiue ptr since it's unique for this class
 		bool m_Running = true;
+		ImGuiLayer* m_ImGuiLayer;
 		LayerStack m_LayerStack;
 		float m_LastFrameTime = 0.0f; 
 

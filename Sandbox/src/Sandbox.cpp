@@ -14,18 +14,18 @@ public:
 	{
 		m_VertexArray.reset(Lumen::VertexArray::Create());
 
-		float vertices[4 * 7] = {
+		float vertices[] = {
 			// positions        // colors
-			-0.5f, -0.5f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, // bottom left
-			 0.5f, -0.5f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f, // bottom right
-			 0.5f,  0.5f, 0.0f, 0.0f, 0.0f, 1.0f, 1.0f, // top right
-			-0.5f,  0.5f, 0.0f, 1.0f, 1.0f, 0.0f, 1.0f  // top left
+			-0.5f, -0.5f, 0.0f, 0.0f, 0.0f, // bottom left
+			 0.5f, -0.5f, 0.0f, 1.0f, 0.0f, // bottom right
+			 0.5f,  0.5f, 0.0f, 1.0f, 1.0f, // top right
+			-0.5f,  0.5f, 0.0f, 0.0f, 1.0f, // top left
 		};
 		std::shared_ptr<Lumen::VertexBuffer> vertexBuffer;
 		vertexBuffer.reset(Lumen::VertexBuffer::Create(vertices, sizeof(vertices)));
 		Lumen::BufferLayout layout = {
 			{ Lumen::ShaderDataType::Float3, "a_Position"},
-			{ Lumen::ShaderDataType::Float4, "a_Color"},
+			{ Lumen::ShaderDataType::Float2, "a_TexCoord"},
 		};
 		vertexBuffer->SetLayout(layout);
 		m_VertexArray->AddVertexBuffer(vertexBuffer);
@@ -74,6 +74,46 @@ public:
 		)";
 
 		m_Shader.reset(Lumen::Shader::Create(vertexSrc, fragmentSrc));
+
+		std::string vertexTextureSrc = R"(
+			#version 330 core
+			
+			layout (location = 0) in vec3 a_Position;
+			layout (location = 1) in vec2 a_TexCoord;
+
+			uniform mat4 u_ViewProjection;
+			uniform mat4 u_Transform;
+
+			out vec2 v_TexCoord;
+
+			void main()
+			{
+				v_TexCoord = a_TexCoord;
+				gl_Position = u_ViewProjection * u_Transform * vec4(a_Position, 1);
+			}	
+		)";
+
+		std::string fragmentTextureSrc = R"(
+			#version 330 core
+			
+			layout (location = 0) out vec4 a_Color;
+
+			in vec2 v_TexCoord;
+
+			uniform sampler2D u_Texture;
+
+			void main()
+			{
+				a_Color = texture(u_Texture, v_TexCoord);
+			}	
+		)";
+
+		m_TextureShader.reset(Lumen::Shader::Create(vertexTextureSrc, fragmentTextureSrc));
+	
+		m_Texture = (Lumen::Texture2D::Create("assets/textures/something_new.jpg"));
+	
+		std::dynamic_pointer_cast<Lumen::OpenGLShader>(m_TextureShader)->Bind();
+		std::dynamic_pointer_cast<Lumen::OpenGLShader>(m_TextureShader)->UploadUniformInt("u_Texture", 0);
 	}
 
 	void OnUpdate(Lumen::Timestep ts) override
@@ -111,6 +151,8 @@ public:
 			}
 		}
 
+		m_Texture->Bind();
+		Lumen::Renderer::Submit(m_TextureShader, m_VertexArray, glm::scale(glm::mat4(1.0), glm::vec3(1.5f)));
 
 
 		Lumen::Renderer::EndScene();
@@ -124,15 +166,14 @@ public:
 
 
 private:
-	std::shared_ptr<Lumen::Shader> m_Shader;
-	std::shared_ptr<Lumen::VertexArray> m_VertexArray;
+	Lumen::Ref<Lumen::Shader> m_Shader, m_TextureShader;
+	Lumen::Ref<Lumen::VertexArray> m_VertexArray;
 
-	std::shared_ptr<Lumen::Shader> m_BlueShader;
-	std::shared_ptr<Lumen::VertexArray> m_SquareVA;
-	 
 	Lumen::OrthographicCamera m_Camera;
 	glm::vec3 m_CameraPosition;
 	float m_CameraSpeed = 0.1f;
+
+	Lumen::Ref<Lumen::Texture2D> m_Texture;
 
 	glm::vec3 m_SquareColor = { 0.2f, 0.4f, 0.4 };
 };
@@ -143,7 +184,6 @@ public:
 	Sandbox()
 	{
 		PushLayer(new ExampleLayer());
-		PushOverlay(new Lumen::ImGuiLayer());
 	}
 
 	~Sandbox()
