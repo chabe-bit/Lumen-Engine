@@ -8,7 +8,7 @@
 namespace Lumen {
     class Renderer {
     public:
-        static void Init(); // Initialize the RendererAPI
+        static void OpenGLInit(); // Initialize the RendererAPI
         static void Shutdown(); // Clean up
 
         static void SetClearColor(const glm::vec4& color);

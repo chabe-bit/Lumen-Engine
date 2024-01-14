@@ -11,7 +11,7 @@ namespace Lumen {
 
     RendererAPI* Renderer::s_RendererAPI = nullptr;
 
-    void Renderer::Init() {
+    void Renderer::OpenGLInit() {
         s_RendererAPI = new OpenGLRendererAPI; // Or appropriate initialization
     }
 

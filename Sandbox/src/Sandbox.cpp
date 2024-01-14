@@ -75,41 +75,7 @@ public:
 
 		m_Shader.reset(Lumen::Shader::Create(vertexSrc, fragmentSrc));
 
-		std::string vertexTextureSrc = R"(
-			#version 330 core
-			
-			layout (location = 0) in vec3 a_Position;
-			layout (location = 1) in vec2 a_TexCoord;
-
-			uniform mat4 u_ViewProjection;
-			uniform mat4 u_Transform;
-
-			out vec2 v_TexCoord;
-
-			void main()
-			{
-				v_TexCoord = a_TexCoord;
-				gl_Position = u_ViewProjection * u_Transform * vec4(a_Position, 1);
-			}	
-		)";
-
-		std::string fragmentTextureSrc = R"(
-			#version 330 core
-			
-			layout (location = 0) out vec4 a_Color;
-
-			in vec2 v_TexCoord;
-
-			uniform sampler2D u_Texture;
-
-			void main()
-			{
-				a_Color = texture(u_Texture, v_TexCoord);
-			}	
-		)";
-
-		m_TextureShader.reset(Lumen::Shader::Create(vertexTextureSrc, fragmentTextureSrc));
-	
+		m_TextureShader.reset(Lumen::Shader::Create("assets/shaders/Texture.glsl")); 	
 		m_Texture = (Lumen::Texture2D::Create("assets/textures/something_new.jpg"));
 	
 		std::dynamic_pointer_cast<Lumen::OpenGLShader>(m_TextureShader)->Bind();

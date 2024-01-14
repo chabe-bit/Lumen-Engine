@@ -23,6 +23,8 @@ namespace Lumen {
 
 		m_Window = std::unique_ptr<Window>(Window::Create());
 		m_Window->SetEventCallback(BIND_EVENT_FN(OnEvent));
+
+
 		//m_Window->SetVSync(false);
 		m_ImGuiLayer = new ImGuiLayer();
 		PushOverlay(m_ImGuiLayer);
@@ -64,7 +66,7 @@ namespace Lumen {
 
 	void Application::Run()
 	{
-		Renderer::Init();
+		Renderer::OpenGLInit();
 
 		while (m_Running)
 		{
